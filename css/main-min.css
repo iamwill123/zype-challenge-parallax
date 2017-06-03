@@ -1,0 +1,74 @@
+body {
+/*  perspective: 1px;
+  transform-style: preserve-3d;*/
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: #000;
+}
+
+#main {
+  margin-top: 8rem;
+}
+
+.parallax {
+  padding: 130px 0;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  -webkit-transition: 200ms;
+     -moz-transition: 200ms;
+      -ms-transition: 200ms;
+       -o-transition: 200ms;
+          transition: 200ms;
+}
+@media screen and (min-width: 500px) {
+    .parallax {
+      padding: 70px 0;
+    }
+    .zype-title {
+      font-size: 1.5rem !important;
+    }
+}
+
+.zype-title {
+  position: relative;
+  color: rgba(245, 245, 245, 0.85);
+  background: rgba(0, 0, 0, 0.75);
+  font-size: 1.8rem;
+  padding: 0.5rem;
+  width: auto;
+  left: 0%;
+  top: 50px;
+}
+
+.navbar-inverse {
+  background-image: none;
+}
+.navbar-inverse {
+  background-color: black;
+  border-color: grey;
+}
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: grey;
+}
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+  background-color: transparent;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
