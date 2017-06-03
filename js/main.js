@@ -80,18 +80,22 @@ function generateHTMLOutput(responseArray, targetDOMElement) {
     }
 
     var parallax = document.querySelectorAll(".parallax"),
-        speed = 0.15;
+        speed = 0.2;
 
     window.onscroll = function() {
-      [].slice.call(parallax).forEach(function(el) {
-        var windowYOffset = window.pageYOffset,                         // The number for how much you've scrolled in the Y direction
-            elementsTopHeight = el.getBoundingClientRect().top - 300,
-            elBackgrounPos = "0 " + (elementsTopHeight * speed) + "px";
-        if(isElementInViewport(el)) {
-          el.style.backgroundPosition = elBackgrounPos;
-        }
-      });
+      if(screenWidth <= 500) {
+        [].slice.call(parallax).forEach(function(el) {
+          var windowYOffset = window.pageYOffset,                         // The number for how much you've scrolled in the Y direction
+              elementsTopHeight = el.getBoundingClientRect().top,
+              elBackgrounPos = "0 " + (elementsTopHeight * speed) + "px";
+          // if(isElementInViewport(el)) {
+            el.style.backgroundPosition = elBackgrounPos;
+          // }
+        });
+      }
     };
+
+    $(window).scroll();   // Trigger window scroll to set the background positions.
   });
 }
 
