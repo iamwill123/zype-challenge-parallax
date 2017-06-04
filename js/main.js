@@ -1,7 +1,7 @@
 'use strict'
 
 const API_KEY = 'H7CF2IHbEc6QIrMVwb2zfd9VI14HHGAfYax1eHEUsJ4voYuqWF2oWvByUOhERva_';
-const imageErrorMobile = 'http://via.placeholder.com/384x288';
+const imageErrorMobile = '../img/takeFlightBoston.jpg' || 'http://via.placeholder.com/384x288';
 const imageErrorPad = 'http://via.placeholder.com/720x405';
 const imageErrorDesktop = 'http://via.placeholder.com/360x202';
 
