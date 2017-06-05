@@ -4,9 +4,9 @@
 const API_KEY = 'H7CF2IHbEc6QIrMVwb2zfd9VI14HHGAfYax1eHEUsJ4voYuqWF2oWvByUOhERva_';
 
 // Helpers
-var imageErrorMobile = '../img/takeFlightBoston.jpg' || 'http://via.placeholder.com/384x288';
-var imageErrorPad = 'http://via.placeholder.com/720x405' || '../img/takeFlightBoston.jpg';
-var imageErrorDesktop = 'http://via.placeholder.com/360x202' || '../img/takeFlightBoston.jpg';
+var imageErrorMobile = '../img/flightBoston.jpg' || 'http://via.placeholder.com/384x288';
+var imageErrorPad = 'http://via.placeholder.com/720x405' || '../img/flightBoston.jpg';
+var imageErrorDesktop = 'http://via.placeholder.com/360x202' || '../img/flightBoston.jpg';
 
 var screenWidth = window.innerWidth
 || document.documentElement.clientWidth
