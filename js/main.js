@@ -89,7 +89,7 @@ function generateHTMLOutput(responseArray, targetDOMElement) {
         speed = 0.2;
 
     var latestKnownScrollY = 0,
-        ticking = true;
+        ticking = false;
 
     function onScroll() {
       latestKnownScrollY = window.scrollY;
@@ -100,11 +100,11 @@ function generateHTMLOutput(responseArray, targetDOMElement) {
       if(!ticking) {
         requestAnimationFrame(update);
       }
-      ticking = false;
+      ticking = true;
     }
 
     function update() {
-      ticking = true;
+      ticking = false;
       var currentScrollY = latestKnownScrollY;
 
       if(screenWidth <= 500) {                                        // limiting the parallax to only screen sizes 500px or below
@@ -118,10 +118,11 @@ function generateHTMLOutput(responseArray, targetDOMElement) {
         });
       }
     }
-    requestAnimationFrame(update);
     window.addEventListener('scroll', onScroll, false);
+    $(window).one(requestAnimationFrame(update));
   });
 }
+
 
 // Use to handle the 404 (works but need to work on it)
 // $(function() {
