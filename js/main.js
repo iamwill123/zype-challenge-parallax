@@ -84,11 +84,29 @@ function generateHTMLOutput(responseArray, targetDOMElement) {
         );
     }
 
-    // Parallax
+    // Parallax effect, and using requestAnimationFrame to optimize the effect, limit the repainting cause it's expensive.
     var parallax = document.querySelectorAll(".parallax"),
         speed = 0.2;
 
-    window.onscroll = function() {
+    var latestKnownScrollY = 0,
+        ticking = true;
+
+    function onScroll() {
+      latestKnownScrollY = window.scrollY;
+      requestTick();
+    }
+
+    function requestTick() {
+      if(!ticking) {
+        requestAnimationFrame(update);
+      }
+      ticking = false;
+    }
+
+    function update() {
+      ticking = true;
+      var currentScrollY = latestKnownScrollY;
+
       if(screenWidth <= 500) {                                        // limiting the parallax to only screen sizes 500px or below
         Array().slice.call(parallax).map(function(el) {
           var windowYOffset = window.pageYOffset,                     // The how much you've scrolled in the Y direction, may come in handy
@@ -99,9 +117,9 @@ function generateHTMLOutput(responseArray, targetDOMElement) {
           // }
         });
       }
-    };
-
-    $(window).scroll();   // Triggers window scroll to set the background positions on load
+    }
+    requestAnimationFrame(update);
+    window.addEventListener('scroll', onScroll, false);
   });
 }
 
