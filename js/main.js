@@ -119,7 +119,7 @@ function generateHTMLOutput(responseArray, targetDOMElement) {
       }
     }
     window.addEventListener('scroll', onScroll, false);
-    $(window).one(requestAnimationFrame(update));
+    $(window).one(requestAnimationFrame(update));         // trigger animation frame once at the start to properly set the image background positions.
   });
 }
 
