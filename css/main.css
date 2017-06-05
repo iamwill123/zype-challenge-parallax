@@ -1,10 +1,8 @@
 body {
-/*  perspective: 1px;
-  transform-style: preserve-3d;*/
   height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
-  background-color: transparent;
+  background-color: black;
 }
 
 #main {
@@ -15,21 +13,17 @@ body {
   padding: 130px 0;
   background-position: 0 0;
   background-repeat: no-repeat;
-  background-size: contain;
-/*  -webkit-transition: 5ms;
-     -moz-transition: 5ms;
-      -ms-transition: 5ms;
-       -o-transition: 5ms;
-          transition: 5ms;*/
+  background-size: cover;
 }
-@media screen and (min-width: 500px) {
+
+@media screen and (min-width: 768px) {
     .parallax {
-      padding: 100px 0;
+      padding: 120px 0;
       background-size: contain;
     }
     .zype-title {
       font-size: 1.5rem !important;
-      top: 0;
+      top: 80px !important;
     }
 }
 
@@ -41,7 +35,7 @@ body {
   padding: 0.5rem;
   width: auto;
   left: 0%;
-  top: 50px;
+  top: 80px;
 }
 
 .navbar-inverse {

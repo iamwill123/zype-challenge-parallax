@@ -1,10 +1,22 @@
 'use strict'
 
+// API key
 const API_KEY = 'H7CF2IHbEc6QIrMVwb2zfd9VI14HHGAfYax1eHEUsJ4voYuqWF2oWvByUOhERva_';
-const imageErrorMobile = '../img/takeFlightBoston.jpg' || 'http://via.placeholder.com/384x288';
-const imageErrorPad = 'http://via.placeholder.com/720x405';
-const imageErrorDesktop = 'http://via.placeholder.com/360x202';
 
+// Helpers
+var imageErrorMobile = '../img/takeFlightBoston.jpg' || 'http://via.placeholder.com/384x288';
+var imageErrorPad = 'http://via.placeholder.com/720x405' || '../img/takeFlightBoston.jpg';
+var imageErrorDesktop = 'http://via.placeholder.com/360x202' || '../img/takeFlightBoston.jpg';
+
+var screenWidth = window.innerWidth
+|| document.documentElement.clientWidth
+|| document.body.clientWidth;
+
+var screenHeight = window.innerHeight
+|| document.documentElement.clientHeight
+|| document.body.clientHeight;
+
+// Handle Data
 // Axios to handle the API request
 (function getRequest() {
   var targetDOMElement = document.getElementById('main');
@@ -16,30 +28,23 @@ const imageErrorDesktop = 'http://via.placeholder.com/360x202';
       generateHTMLOutput(responseArray, targetDOMElement);
     })
     .catch(function (error) {
-      if (error.response) {
+      if(error.response) {
         console.log(error.response.status);
       }
       console.log(error);
     });
 })();
 
+// Use the data that's passed to render the template
 function generateHTMLOutput(responseArray, targetDOMElement) {
 
   responseArray.map(function(result) {
 
-    var screenWidth = window.innerWidth
-    || document.documentElement.clientWidth
-    || document.body.clientWidth;
-
-    var screenHeight = window.innerHeight
-    || document.documentElement.clientHeight
-    || document.body.clientHeight;
-
     var title = result.title;
     var responsiveThumb = 'http://via.placeholder.com/720x405';
-
     var thumbArray = result.thumbnails;
 
+    // Handle custom thumbnail images depending on screen size, and the handling of the 404 image.
     for(var i = 0; i < thumbArray.length; i++) {
       if(screenWidth <= 500) {
         // console.log(screenWidth + ' mobile ' + thumbArray[2].url);
@@ -55,22 +60,22 @@ function generateHTMLOutput(responseArray, targetDOMElement) {
       }
     }
 
-    var markupContent = '<div class="col-md-4">' +
+    var markupContent = '<div class="col-xs-12 col-sm-6 col-md-4">' +
                           '<div class="parallax" style="background-image: url(' + responsiveThumb + ');">' +
                               '<div class="zype-title parallax">' + title + '</div>' +
                           '</div>' +
                         '</div>';
+
     targetDOMElement.innerHTML += markupContent;
 
-    // Custom parallax effect start
-
+// Custom parallax effect start
+    // helper function to detect if element is within our viewport
     function isElementInViewport(el) {
         //special bonus for those using jQuery
         if (typeof jQuery === "function" && el instanceof jQuery) {
             el = el[0];
         }
         var rect = el.getBoundingClientRect();
-
         return (
             rect.top >= 0 &&
             rect.left >= 0 &&
@@ -79,23 +84,24 @@ function generateHTMLOutput(responseArray, targetDOMElement) {
         );
     }
 
+    // Parallax
     var parallax = document.querySelectorAll(".parallax"),
         speed = 0.2;
 
     window.onscroll = function() {
-      if(screenWidth <= 500) {
-        [].slice.call(parallax).forEach(function(el) {
-          var windowYOffset = window.pageYOffset,                         // The number for how much you've scrolled in the Y direction
+      if(screenWidth <= 500) {                                        // limiting the parallax to only screen sizes 500px or below
+        Array().slice.call(parallax).map(function(el) {
+          var windowYOffset = window.pageYOffset,                     // The how much you've scrolled in the Y direction, may come in handy
               elementsTopHeight = el.getBoundingClientRect().top,
               elBackgrounPos = "0 " + (elementsTopHeight * speed) + "px";
-          // if(isElementInViewport(el)) {
+          // if(isElementInViewport(el)) {                            // use this if you want the parallax effect to happen when images are in view. Also less expensive on the browser
             el.style.backgroundPosition = elBackgrounPos;
           // }
         });
       }
     };
 
-    $(window).scroll();   // Trigger window scroll to set the background positions.
+    $(window).scroll();   // Triggers window scroll to set the background positions on load
   });
 }
 
