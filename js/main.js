@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 // API key
 const API_KEY = 'H7CF2IHbEc6QIrMVwb2zfd9VI14HHGAfYax1eHEUsJ4voYuqWF2oWvByUOhERva_';
